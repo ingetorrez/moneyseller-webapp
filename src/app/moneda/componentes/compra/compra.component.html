@@ -1,12 +1,12 @@
 <div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">Comprando</h5>
+    <div class="card-body" *ngIf="!submitted">
+        <h5 class="card-title">Comprar</h5>
         <form>
             <div class="form-group">
                 <label for="idUsuario">ID de Usuario</label>
-                <input type="number" required #idUsuario="ngModel" [(ngModel)]="compra.idUsuario" class="form-control" name="idUsuario" id="idUsuario" placeholder="ID de usuario">
+                <input type="number" required [(ngModel)]="compra.idUsuario" class="form-control" name="idUsuario" id="idUsuario" placeholder="ID de usuario">
             </div>
-            <!-- <label>Moneda a comprar</label> <br>
+            <label>Moneda a comprar</label> <br>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="moneda" [(ngModel)]="compra.moneda" id="dolar" value="dolar" checked>
                 <label class="form-check-label" for="dolar">
@@ -23,7 +23,7 @@
             <div class="form-group">
                 <label for="monto">Monto</label>
                 <input type="number" class="form-control" name="monto" required [(ngModel)]="compra.monto" id="monto" placeholder="Ingresa el monto a comprar">
-            </div> -->
+            </div>
             <br>
             <div class="d-flex flex-column">
                 <button type="submit" class="btn btn-primary" (click)="saveCompra()">Efectuar compra</button>
@@ -33,4 +33,56 @@
 
 
     </div>
+
+
+    <div class="card-body" *ngIf="submitted">
+        <h5 class="card-title">Compra efectuada</h5>
+        <p>{{response.fecha}}</p>
+        <br>
+        <div class="response">
+            <div class="row">
+                <div class="col-8">
+                    Moneda:
+                </div>
+                <div class="col-4">
+                    {{response.moneda=="dolar"?"Dólares":"Real"}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    Monto:
+                </div>
+                <div class="col-4">
+                    {{response.monto}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    Total en {{response.moneda=="dolar"?"dólares":"reales"}}:
+                </div>
+                <div class="col-4">
+                    {{response.total}}
+                </div>
+            </div>
+            <br>
+            <div class="d-flex flex-column">
+                <button type="submit" class="btn btn-success" (click)="newCompra()">Nueva compra</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<br>
+<div class="alert alert-danger" role="alert" *ngIf="errorMessage!=''">
+    {{errorMessage}}
+</div>
+
+<br>
+
+<div class="currency-display">
+    <h5>Cotización del peso Argentino:</h5>
+    <h1> Dólar : {{currency.dolar}} </h1>
+
+    <h1> Real : {{currency.real}} </h1>
 </div>

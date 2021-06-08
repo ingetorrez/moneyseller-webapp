@@ -5,6 +5,8 @@ import { CotizacionesComponent } from './componentes/cotizaciones/cotizaciones.c
 import { NgxSpinnerModule } from "ngx-spinner";
 import { CompraComponent } from './componentes/compra/compra.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     CotizacionesComponent,
@@ -15,7 +17,8 @@ import { CompraComponent } from './componentes/compra/compra.component';
   ],
   imports: [
     CommonModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FormsModule
   ]
 })
 export class MonedaModule { }

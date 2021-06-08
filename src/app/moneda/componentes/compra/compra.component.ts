@@ -14,7 +14,7 @@ import { CompraResponse } from '../../modelos/compra-response';
 export class CompraComponent implements OnInit {
   public currency: Currency = { dolar:0, real:0 };
 
-  public compra: Compra = { idUsuario:0, moneda:"", monto:0 };
+  public compra: Compra = { idUsuario:"", moneda:"dolar", monto:"" };
 
 
   public response: CompraResponse = { id: 0,
@@ -23,7 +23,7 @@ export class CompraComponent implements OnInit {
                                       moneda: "",
                                       cambio: 0,
                                       total: 0,
-                                      fecha: new Date() };
+                                      fecha: "" };
 
   submitted = false;
   errorMessage=""
@@ -45,28 +45,37 @@ export class CompraComponent implements OnInit {
     this.spinner.hide(name);
   }
 
-  // newCompra():void{
-  //   this.response=new Compra
-  // }
+  newCompra():void{
+    this.compra={ idUsuario:"", moneda:"dolar", monto:"" };
+
+    this.submitted=false;
+
+    this.errorMessage="";
+  }
 
   saveCompra():void{
-    return console.log(this.compra)
+    const { idUsuario:id, moneda, monto} =this.compra;
+    if(id=="" || id==null || moneda=="" || moneda==null || monto=="" || monto==null) return;
+
     this.showSpinner("sp0")
     this.apiservice.create(this.compra)
     .subscribe(resp=>{
 
-      this.response=resp;
+      this.response={...resp,fecha:`El ${new Date(resp.fecha).toLocaleDateString("en-US")} a las ${new Date(resp.fecha).toLocaleTimeString("en-US")}`};
 
       this.submitted=true;
 
       this.errorMessage=""
 
+
       this.hideSpinner("sp0")
     },
     error=>{
-      console.log(error)
+      this.errorMessage=error.error
 
-      this.submitted=true;
+      setTimeout(()=>this.errorMessage="",5000)
+
+      this.submitted=false;
 
       this.hideSpinner("sp0")
     })

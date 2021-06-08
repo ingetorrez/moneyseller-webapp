@@ -13,7 +13,7 @@ import { CompraResponse } from '../modelos/compra-response';
 export class ApiService {
   private currency: Currency = { dolar:0, real:0 };
   private GetAllUrl = `${environment.apiUrl}Moneda/GetAll`;
-  private CreateUrl = `${environment.apiUrl}Comprar`;
+  private CreateUrl = `${environment.apiUrl}Moneda/Comprar`;
 
   constructor(private http: HttpClient) {}
 

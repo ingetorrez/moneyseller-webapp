@@ -1,5 +1,5 @@
 export interface Compra {
-  idUsuario: number,
-  monto: number,
+  idUsuario: string,
+  monto: string,
   moneda: string,
 }

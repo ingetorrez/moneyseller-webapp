@@ -5,5 +5,5 @@ export interface CompraResponse {
   moneda: string,
   cambio: number,
   total: number,
-  fecha: Date
+  fecha: string
 }
