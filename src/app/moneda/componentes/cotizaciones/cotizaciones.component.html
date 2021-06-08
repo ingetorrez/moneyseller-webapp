@@ -1,0 +1,29 @@
+<div class="container d-flex justify-content-center currency">
+    <div class="row">
+        <div class="col">
+
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://images.freeimages.com/images/large-previews/59d/20-bucks-on-the-table-1-1239693.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Cotizaciones</h5>
+                    <hr>
+                    <div class="currency-viewer">
+                        <h1> Dolar : {{currency.dolar}} </h1>
+
+                        <h1> Real : {{currency.real}} </h1>
+
+                        <br>
+                        <div class="d-flex flex-column">
+                            <button type="button" class="btn btn-info" (click)="refreshCurrency()">
+                              Actualizar
+                          </button>
+                        </div>
+                    </div>
+                    <ngx-spinner name="sp0" [fullScreen]="false" type="square-jelly-box" size="medium"></ngx-spinner>
+                </div>
+            </div>
+            <br><br>
+
+        </div>
+    </div>
+</div>
